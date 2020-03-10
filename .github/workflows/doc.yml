@@ -2,7 +2,7 @@ name: Documentation
 
 on:
   schedule:
-    - cron: '* */2 * * *'
+    - cron: '* 1 * * *'
 
 jobs:
   update-docs:
