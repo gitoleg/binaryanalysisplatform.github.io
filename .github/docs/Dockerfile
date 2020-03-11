@@ -4,6 +4,7 @@ FROM gitoleg/bap:latest
 WORKDIR /home/opam
 RUN eval $(opam env) && opam install odig --yes
 COPY update.sh /home/opam/update.sh
-USER runner
+
+RUN useradd runner -g docker
 
 ENTRYPOINT ["sh", "/home/opam/update.sh"]
