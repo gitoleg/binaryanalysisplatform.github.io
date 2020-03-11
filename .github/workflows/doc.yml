@@ -18,6 +18,7 @@ jobs:
          uses: actions/checkout@v2
        - name: build
          run: |
+          git log --pretty=format:"%s" | head -n 1 > commit
           docker image build .github/docs -t docs
           docker run --rm -v `pwd`:/drive docs
        - name: push

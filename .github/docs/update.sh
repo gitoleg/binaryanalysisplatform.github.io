@@ -16,7 +16,6 @@ if [ -f $DRIVE/commit ]; then
     if [ "$io_commit" != "bap_commit" ]; then
         echo "going to build docs"
 
-
         make doc -C $bap
 
         echo bap_commit > $DRIVE/bap_commit
