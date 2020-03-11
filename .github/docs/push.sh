@@ -9,5 +9,6 @@ if [ -f bap_commit ]; then
 
     git add bap/api
     git commit -m "cat bap_commit"
-    git push $remote_repo master
+#    git push $remote_repo master # TODO!
+    git push $remote_repo add-actions
 fi

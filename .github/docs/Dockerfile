@@ -1,5 +1,4 @@
-#FROM binaryanalysisplatform/bap:latest
-
+#FROM binaryanalysisplatform/bap:latest #TODO
 FROM gitoleg/bap:latest
 
 USER root
