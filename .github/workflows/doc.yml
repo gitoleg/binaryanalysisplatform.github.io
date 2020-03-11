@@ -22,8 +22,8 @@ jobs:
        #    docker run --rm -v `pwd`:/drive docs
        - name: lookaround
          run: |
-          git log --pretty=format:"%s" | head -n 1
-          ls -l
+#          git log --pretty=format:"%s" | head -n 1
+          ls -la
        - name: building
          run: .github/docs/update.sh
           docker image build .github/docs -t docs
