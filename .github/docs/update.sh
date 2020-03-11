@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+ls -l /drive
+exit 0
+
 TOKEN=$1
 io_commit=`git log --pretty=format:"%s" | head -n 1`
 
