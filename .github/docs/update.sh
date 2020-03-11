@@ -1,12 +1,10 @@
 #!/usr/bin/env sh
 
-bmaecho "Ok stage 1"
-
 DRIVE=/drive
 
-if [ -f $DRIVE/commit ]; then
-    echo "Ok stage 2"
+eval $(opam env)
 
+if [ -f $DRIVE/commit ]; then
     io_commit=`cat $DRIVE/commit`
     bap="bap.upstream"
     git clone https://github.com/gitoleg/bap --single-branch --branch=new-documentation --depth=1 $bap
@@ -15,7 +13,6 @@ if [ -f $DRIVE/commit ]; then
 
     if [ "$io_commit" != "bap_commit" ]; then
 
-        echo "going to build docs"
         make doc
 
         echo $bap_commit > $DRIVE/bap_commit
