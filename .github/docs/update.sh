@@ -3,6 +3,9 @@
 TOKEN=$1
 io_commit=`git log --pretty=format:"%s" | head -n 1`
 
+echo "docker ?"
+which docker
+
 echo "let's look what do we have"
 ls -la
 
