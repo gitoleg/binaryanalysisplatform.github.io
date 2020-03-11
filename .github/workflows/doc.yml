@@ -16,6 +16,8 @@ jobs:
      steps:
        - name: checkout
          uses: actions/checkout@v2
+       - name: mysuperaction
+         run: touch aaa
        - name: lookaround
          run: ls -l
        - name: building
