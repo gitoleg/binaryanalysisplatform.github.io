@@ -16,10 +16,10 @@ if [ -f $DRIVE/commit ]; then
     if [ "$io_commit" != "bap_commit" ]; then
         make doc
         echo $bap_commit > $DRIVE/bap_commit
-        rsync -av  --delete doc/man1/ $DRIVE/bap/api/man1/
-        rsync -av  --delete doc/man3/ $DRIVE/$bap/api/man3/
-        rsync -av  --delete doc/lisp/ $DRIVE/bap/api/lisp/
-        rsync -avL --delete doc/odoc/ $DRIVE/bap/api/odoc/
+        rsync -a  --delete doc/man1/ $DRIVE/bap/api/man1/
+        rsync -a  --delete doc/man3/ $DRIVE/bap/api/man3/
+        rsync -a  --delete doc/lisp/ $DRIVE/bap/api/lisp/
+        rsync -aL --delete doc/odoc/ $DRIVE/bap/api/odoc/
 
     else
         echo "Nothing we need to do, documentation is up-to-date"

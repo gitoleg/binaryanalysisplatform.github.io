@@ -21,5 +21,7 @@ jobs:
           git log --pretty=format:"%s" | head -n 1 > commit
           docker image build .github/docs -t docs
           docker run --rm -v `pwd`:/drive docs
+       - name: lookup
+         run: ls -l
        - name: push
          run: .github/docs/push.sh  ${{ secrets.GITHUB_TOKEN }}
