@@ -2,6 +2,8 @@
 
 FROM gitoleg/bap:latest
 
+USER root
+
 WORKDIR /home/opam
 
 RUN eval $(opam env) && opam install odig --yes
