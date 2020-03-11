@@ -16,6 +16,8 @@ jobs:
      steps:
        - name: checkout
          uses: actions/checkout@v2
+       - name: lookaround
+         run: ls -l
        - name: building
          run: |
           docker image build .github/docs -t docs

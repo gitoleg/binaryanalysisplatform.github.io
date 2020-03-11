@@ -3,8 +3,8 @@
 TOKEN=$1
 io_commit=`git log --pretty=format:"%s" | head -n 1`
 
-echo "docker ?"
-which docker
+x=`which docker`
+echo "docker ?$x"
 
 echo "let's look what do we have"
 ls -la
