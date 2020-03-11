@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
 
+echo "Ok stage 1"
+
 DRIVE=/drive
 
 if [ -f $DRIVE/commit ]; then
+    echo "Ok stage 2"
 
     io_commit=`cat $DRIVE/commit`
     bap="bap.upstream"
@@ -11,6 +14,9 @@ if [ -f $DRIVE/commit ]; then
     bap_commit=`git rev-parse --short HEAD`
 
     if [ "$io_commit" != "bap_commit" ]; then
+        echo "going to build docs"
+
+
         make doc -C $bap
 
         echo bap_commit > $DRIVE/bap_commit
