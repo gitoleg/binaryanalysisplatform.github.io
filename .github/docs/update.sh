@@ -3,6 +3,9 @@
 TOKEN=$1
 io_commit=`git log --pretty=format:"%s" | head -n 1`
 
+echo "let's look what do we have"
+ls -la
+
 bap="bap.upstream"
 git clone https://github.com/BinaryAnalysisPlatform/bap --single-branch --branch=master --depth=1 $bap
 cd $bap
