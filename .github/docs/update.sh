@@ -14,7 +14,9 @@ if [ -f $DRIVE/commit ]; then
     bap_commit=`git rev-parse --short HEAD`
 
     if [ "$io_commit" != "bap_commit" ]; then
+
         echo "going to build docs"
+        make doc
 
         echo $bap_commit > $DRIVE/bap_commit
 
