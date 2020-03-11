@@ -21,7 +21,7 @@ jobs:
           git log --pretty=format:"%s" | head -n 1 > commit
           docker image build .github/docs -t docs
           mkdir ready
-          docker run --rm -v `pwd`:/drive docs
+          docker run --rm -v `pwd`:/drive:z docs
        - name: lookup
          run: |
            ls -l ready
