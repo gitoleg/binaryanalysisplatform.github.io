@@ -15,12 +15,12 @@ if [ -f $DRIVE/commit ]; then
 
     if [ "$io_commit" != "bap_commit" ]; then
         make doc
-        echo $bap_commit > $DRIVE/bap_commit
+        echo $bap_commit > bap_commit
 
-        cp -r  doc/man1/ $DRIVE/ready
-        cp -r  doc/man3/ $DRIVE/ready
-        cp -r  doc/lisp/ $DRIVE/ready
-        cp -rL doc/odoc/ $DRIVE/ready
+        # cp -r  doc/man1/ $DRIVE/ready
+        # cp -r  doc/man3/ $DRIVE/ready
+        # cp -r  doc/lisp/ $DRIVE/ready
+        # cp -rL doc/odoc/ $DRIVE/ready
         # rsync -a  --delete doc/man1/ $DRIVE/bap/api/man1/
         # rsync -a  --delete doc/man3/ $DRIVE/bap/api/man3/
         # rsync -a  --delete doc/lisp/ $DRIVE/bap/api/lisp/

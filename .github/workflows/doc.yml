@@ -21,12 +21,11 @@ jobs:
           git log --pretty=format:"%s" | head -n 1 > commit
           docker image build .github/docs -t docs
           mkdir ready
-          docker run --rm -v `pwd`:/drive:z docs
+          docker run -v `pwd`:/drive --name mycontainer docs
+          docker cp    mycontainer:/home/opam/bap.upstream/man1 ready/
+          docker cp    mycontainer:/home/opam/bap.upstream/man3 ready/
+          docker cp -L mycontainer:/home/opam/bap.upstream/odoc ready/
        - name: lookup
-         run: |
-           ls -l ready
-           chown -R runner:docker ready/man1
-           ls -l ready
-
+         run:  ls -l ready
 #       - name: push
 #         run: .github/docs/push.sh  ${{ secrets.GITHUB_TOKEN }}
