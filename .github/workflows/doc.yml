@@ -19,12 +19,6 @@ jobs:
        - name: build
          run: |
           docker image build .github/docs -t docs
-          git log --pretty=format:"%s" | head -n 1 > commit
           docker run --rm -v `pwd`:/drive docs
-       - name: lookaround
-         run:  ls -la
-       # - name: building
-       #   run: .github/docs/update.sh
-       #    docker image build .github/docs -t docs
-       #    docker run --rm docs ${{ secrets.GITHUB_TOKEN }}
-       #    docker image rm docs
+       - name: push
+         run: .github/docs/push.sh  ${{ secrets.GITHUB_TOKEN }}
