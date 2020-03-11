@@ -1,7 +1,7 @@
 #FROM binaryanalysisplatform/bap:latest #TODO
 FROM gitoleg/bap:latest
 
-USER root
+USER runner
 
 WORKDIR /home/opam
 
