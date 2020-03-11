@@ -1,10 +1,11 @@
-FROM binaryanalysisplatform/bap:latest
+#FROM binaryanalysisplatform/bap:latest
+
+FROM gitoleg/bap:latest
+
 WORKDIR /home/opam
 
-RUN eval $(opam env) \
- && opam install odig --yes
-#DON'T FORGET '\' && git clone https://github.com/BinaryAnalysisPlatform/bap --single-branch --branch master --depth=1 \
-# && cd bap \
-# && make doc && ls doc
+RUN eval $(opam env) && opam install odig --yes
 
-#ENTRYPOINT ["sh", "/home/opam/update.sh"]
+COPY update.sh /home/opam/update.sh
+
+ENTRYPOINT ["sh", "/home/opam/update.sh"]

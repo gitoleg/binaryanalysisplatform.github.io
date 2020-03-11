@@ -1,8 +1,12 @@
 name: Documentation
 
+# on:
+#   schedule:
+#     - cron: '* 1 * * *'
+
 on:
-  schedule:
-    - cron: '* 1 * * *'
+  push:
+  - branches: master
 
 jobs:
   update-docs:
@@ -15,4 +19,4 @@ jobs:
          run: |
           docker image build .github/docs -t docs
           docker run --rm docs ${{ secrets.GITHUB_TOKEN }}
-#          docker image rm docs
+          docker image rm docs
