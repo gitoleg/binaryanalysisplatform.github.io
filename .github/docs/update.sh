@@ -15,9 +15,8 @@ if [ -f $io_commit ]; then
 
     if [ "$io_commit" != "bap_commit" ]; then
         make doc
-        ls
+        ls doc
         echo $bap_commit > bap_commit
-        `pwd`
         # cp -r  doc/man1/ $DRIVE/ready
         # cp -r  doc/man3/ $DRIVE/ready
         # cp -r  doc/lisp/ $DRIVE/ready
