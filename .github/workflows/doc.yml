@@ -29,6 +29,6 @@ jobs:
           docker cp -L mycontainer:/home/opam/bap.master/doc/odoc ready/
           docker cp  mycontainer:/home/opam/bap.master/bap_commit .
        - name: lookup
-         run:  ls -l ready
-#       - name: push
-#         run: .github/docs/push.sh  ${{ secrets.GITHUB_TOKEN }}
+         run:  ls -l ready/man1
+       - name: push
+         run: .github/docs/push.sh  ${{ secrets.GITHUB_TOKEN }}
