@@ -1,5 +1,4 @@
-#FROM binaryanalysisplatform/bap:latest #TODO
-FROM gitoleg/bap:latest
+FROM binaryanalysisplatform/bap:latest
 
 WORKDIR /home/opam
 COPY update.sh /home/opam/update.sh

@@ -7,9 +7,7 @@ ls -l
 
 if [ -f $io_commit ]; then
     bap="bap.master"
-    # TODO
-    # git clone https://github.com/BinaryAnalysisPlatform/bap --single-branch --branch=master --depth=1 $bap
-    git clone https://github.com/gitoleg/bap --single-branch --branch=new-documentation --depth=1 $bap
+    git clone https://github.com/BinaryAnalysisPlatform/bap --single-branch --branch=master --depth=1 $bap
     cd $bap
     bap_commit=`git rev-parse --short HEAD`
 
