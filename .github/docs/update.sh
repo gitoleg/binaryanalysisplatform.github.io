@@ -13,11 +13,10 @@ if [ -f $io_commit ]; then
     cd $bap
     bap_commit=`git rev-parse --short HEAD`
 
-    if [ "$io_commit" != "bap_commit" ]; then
+    if [ "$io_commit" != "$bap_commit" ]; then
         make doc
         ls doc
         echo $bap_commit > bap_commit
-
     else
         echo "Nothing we need to do, documentation is up-to-date"
     fi
