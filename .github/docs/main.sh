@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -eu
+
 digest=.github/docs/bap-digest
 
 old=`cat $digest`

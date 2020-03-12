@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -eu
+
 TOKEN=$1
 
 sync () {

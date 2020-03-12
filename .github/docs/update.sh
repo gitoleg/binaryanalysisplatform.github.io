@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -eu
+
 io_commit=/home/opam/commit
 
 eval $(opam env)
