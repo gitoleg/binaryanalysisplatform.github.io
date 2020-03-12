@@ -18,17 +18,6 @@ jobs:
        - name: checkout
          uses: actions/checkout@v2
        - name: build
-         run: |
-          git log --pretty=format:"%s" | head -n 1 > .github/docs/commit
-          docker image build .github/docs -t docs
-          mkdir ready
-          docker run -v `pwd`:/drive --name mycontainer docs
-          docker cp    mycontainer:/home/opam/bap.master/doc/lisp ready/
-          docker cp    mycontainer:/home/opam/bap.master/doc/man1 ready/
-          docker cp    mycontainer:/home/opam/bap.master/doc/man3 ready/
-          docker cp -L mycontainer:/home/opam/bap.master/doc/odoc ready/
-          docker cp    mycontainer:/home/opam/bap.master/bap_commit .
-       - name: lookup
-         run:  ls -l ready/man1
+         run: .github/docs/main.sh
        - name: push
          run: .github/docs/push.sh  ${{ secrets.GITHUB_TOKEN }}

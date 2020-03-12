@@ -22,6 +22,6 @@ if [ -f $io_commit ]; then
         echo "Nothing we need to do, documentation is up-to-date"
     fi
 else
-    echo "Can't find a file with commit"
+    echo "Can't find a file with last binaryanalysisplatform.github.io commit"
     exit 1
 fi

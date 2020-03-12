@@ -18,6 +18,7 @@ if [ -f bap_commit ]; then
     git config --global user.name $GITHUB_ACTOR
     git config --global user.email "action-noreply@github.com"
 
+    git add .github/docs/bap-digest > /dev/null
     git add bap/api > /dev/null
     git commit -m `cat bap_commit`
 #    git push $repo master # TODO!
