@@ -3,7 +3,7 @@
 x=`cat .github/docs/bap-digest`
 y=`curl -s https://hub.docker.com/v2/repositories/binaryanalysisplatform/bap/tags | jq -r '.results|.[]| select ( .name == "latest") | .images | .[] | .digest'`
 
-if [ "get$x" != "get $y" ]; then
+if [ "get$x" != "get$y" ]; then
     echo y > .github/docs/bap-digest
     git log --pretty=format:"%s" | head -n 1 > .github/docs/commit
     docker image build .github/docs -t docs
