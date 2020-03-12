@@ -1,0 +1,653 @@
+* Macros
+** ~+=~
+(+= X Y) assigns a sum of X and Y to variable X
+** ~and~
+(and X Y ...) evaluates expressions X,Y,... until the first
+expression that returns false. The value of the whole form is the
+value of the last evaluated expression.
+** ~array-get~
+(array-get T P N) gets the N-th element of the
+array of elements of type T, pointed by P
+** ~array-set~
+(array-set T P N W) sets to W the N-th element of the array of
+elements of type T, pointed by P. Returns a pointer to the next
+element
+** ~assert~
+(assert COND) terminates program if COND is false
+** ~bitwidth~
+
+** ~case~
+(case K K1 X1 K2 X2 ... Kn Xn [DEF]) evaluates K then consequently
+evaluates keys K1 ...Kn until a key Ki such that (= K Ki) is found.
+If such key is found then the whole form evaluates to Xi.
+If no matching key was found, then if the number of keys is equal to
+the number of expressions, nil is returned, otherwise, i.e., if an
+extra expression DEF is provided, then it becomes the value of the
+whole form.
+Examples:
+(defun dispatch-with-default-case (c)
+(case c
+1 'hello
+2 'cruel
+3 'world
+'unknown))
+(defun dispatch-with-no-default (c)
+(case c
+1 'hello
+2 'cruel
+3 'world))
+** ~case/dispatch~
+
+** ~cast~
+
+** ~compare~
+(compare X Y) returns 0 if X = Y, a negative value if X<Y
+and a positive value if X>Y
+** ~copy-byte-shift~
+(copy-byte-shift DST SRC) copies byte from
+SRC to DST and increments SRC and DST.
+** ~copy-byte-shift-left~
+(copy-byte-shift-left DST SRC) copies
+byte from DST to SRC and decrements SRC and DST.
+** ~copy-left~
+(copy-left DST SRC LEN) copies LEN bytes
+from SRC to DST (right to left)
+** ~copy-right~
+(copy-right DST SRC LEN) copies LEN bytes
+from SRC to DST (left to right)
+** ~decr~
+(decr X Y ...) decrements the value bound with the variables X, Y, ...
+** ~endian~
+(endian F X Y) expands to (F X Y) if applied
+in the big endian context
+OR
+(endian F X Y) expands to (F Y X) if applied
+in the little endian context
+** ~find-character~
+
+** ~fold~
+(fold F A X Y ...) expands to (F (F A X) Y) ...
+** ~incr~
+(incr X Y ...) increments the value bound with the variables X, Y, ...
+** ~is-in~
+(is-in X A B C ...) returns true if X is equal A or B or C or ...
+** ~make-converter~
+
+** ~make-copy~
+<internal>
+** ~max~
+(max X Y ...) returns the upper bound of the (X,Y,...) set
+** ~min~
+(min X Y ...) returns the lower bound of the (X,Y,...) set
+** ~nth-byte-of-word~
+(nth-byte-of-word T N X) returns N-th byte
+of the word X that has type T
+** ~or~
+(or <expr> ...) evaluates a sequence of expressions EXPR from left
+to right until it meets the first expression that evaluates to the
+truth value, that will become the value of the whole form. If no
+expression returned the truth value, then the result of the whole
+form is 0:1
+** ~points-to~
+(points-to T P V) return true if t P points
+to a value of type T that is equal to V.
+** ~ptr+~
+(ptr+ T P N) increments N times the
+pointer P to a value of type T.
+** ~ptr+1~
+(ptr+1 T P) increments the pointer P to
+a value of to type T.
+** ~read-word~
+(read-word T A) reads a word of type T at address A
+** ~sign~
+returns 1 if X > 0, 0 if X = 0, and -1 if X < 0
+** ~sizeof~
+
+** ~skip-all~
+
+** ~unless~
+(unless CND BODY) if CND evaluates to false, then BODY is evaluated and
+the value of the last expression in BODY becomes the value of the
+whole expression. Otherwise, if CND evaluates to true, nil is returned.
+** ~until~
+(until COND BODY) if COND evaluates to true, then the whole expression
+evaluates to nil and BODY is not evaluated. Otherwise, if COND evaluates
+to false, then BODY is evaluated until COND evaluates to true and the value
+of the last evaluation of BODY becomes the value of the whole expression.
+** ~when~
+(when CND BODY) if CND evaluates to true, then BODY is evaluated and
+the value of the last expression in BODY becomes the value of the
+whole expression. Otherwise, if CND evaluates to false, nil is returned.
+** ~write-word~
+(write-word T A X) writes the word X of type T to address A
+returns an address that points to the first byte that follows
+the just written word.
+
+* Substitutions
+* Constants
+** ~false~
+false is another name for 0:1
+** ~nil~
+nil is another name for false
+** ~true~
+true is another name for 1:1
+* Functions
+** ~+1~
+(+1 x) returns the successor of X
+** ~-1~
+(-1 X) returns the predecessor of X
+** ~abort~
+terminates program with exit code 1
+** ~ascii-digit~
+(ascii-digit s) is true if S is an ascii representation of decimal digit
+** ~ascii-sign~
+(ascii-sign S) is 1 if S is + and -1 otherwise
+** ~ascii-special~
+(ascii-special S) is true if S is an ascii special character
+** ~ascii-whitespace~
+(ascii-whitespace S)is true if S is a whitespace
+** ~atexit~
+
+** ~atoi~
+
+** ~atoi-prefix~
+
+** ~atoi-read-digit~
+
+** ~atol~
+
+** ~atoll~
+
+** ~calloc~
+allocates memory and initializes it with zero
+** ~char~
+
+** ~copy-byte~
+(copy-byte DST SRC) copies byte from
+the address SRC to DST.
+** ~double~
+
+** ~exit~
+
+** ~fgetc~
+
+** ~fgets~
+
+** ~fgets-step~
+
+** ~fini~
+
+** ~float~
+
+** ~fopen~
+
+** ~fputc~
+
+** ~fputs~
+
+** ~fread~
+
+** ~free~
+frees the memory region pointed by P
+** ~fwrite~
+
+** ~getchar~
+
+** ~getenv~
+finds a value of an environment variable with the given name
+** ~handle-unresolved-names~
+(handle-unresolved-names) emits a diagnostic message when called
+** ~init~
+GNU libc initialization stub
+OR
+bionic initialization function
+OR
+GNU libc initialization stub
+** ~input-item~
+
+** ~input-item-nth-char~
+
+** ~int~
+
+** ~int32_t~
+
+** ~int64_t~
+
+** ~long~
+
+** ~long-long~
+
+** ~malloc~
+allocates a memory region of size N
+** ~malloc-heap-size~
+
+** ~malloc-will-reach-limit~
+
+** ~malloc/fill-edges~
+
+** ~malloc/get-chunk-size~
+
+** ~malloc/put-chunk-size~
+
+** ~memccpy~
+
+** ~memchr~
+
+** ~memcmp~
+
+** ~memcpy~
+
+** ~memmove~
+
+** ~memory/allocate~
+
+** ~memrchr~
+
+** ~memset~
+
+** ~model-ilp32~
+
+** ~model-ilp64~
+
+** ~model-llp64~
+
+** ~model-lp32~
+
+** ~model-lp64~
+
+** ~non-zero~
+(non-zero X) is true if X is not zero
+** ~open3~
+
+** ~output-item~
+
+** ~output-item-nth-char~
+
+** ~points-to-null~
+(points-to-null P) true if P points to a zero byte
+** ~ptr_t~
+
+** ~putchar~
+
+** ~puts~
+
+** ~read~
+
+** ~read-ascii-word~
+
+** ~realloc~
+
+** ~realloc/as-free~
+
+** ~realloc/shrink-chunk~
+
+** ~realloc/update-chunk~
+
+** ~security-init-cookie~
+Windows CRT buffer overrun protection
+** ~short~
+
+** ~strchr~
+
+** ~strcmp~
+
+** ~strcpy~
+
+** ~strdup~
+
+** ~strlen~
+
+** ~strlen/with-null~
+returns a length of the string S
+(including the terminating null character)
+** ~strncmp~
+
+** ~strncpy~
+
+** ~strpbrk~
+
+** ~strrchr~
+
+** ~stub~
+stubs that does nothing
+** ~write~
+
+* Methods
+** ~machine-kill~
+
+* Parameters
+** ~*malloc-arena-start*~
+the starting address of the malloc arena
+** ~*malloc-guard-edges*~
+if not nil, then add padding of the specified size
+around allocated chunks
+** ~*malloc-guard-pattern*~
+a byte that will be used to fill guard edges
+** ~*malloc-initial-value*~
+initialize allocated memory with the said value
+** ~*malloc-initialize-memory*~
+if true then initialize allocated memory with *malloc-initial-value*
+** ~*malloc-max-arena-size*~
+the maximum number of bytes totally allocated by malloc,
+if not set, then there is no limit
+** ~*malloc-max-chunk-size*~
+the maximum size of a single memory chunk,
+if nil then there is no limit. 
+** ~*malloc-zero-sentinel*~
+a pointer that is returned by (malloc 0)
+* Primitives
+** ~*~
+(* X Y Z ...) returns the product of arguments or 0 if the list
+of arguments is empty
+** ~+~
+(+ X Y ...) returns the sum of arguments, or 0 if there are
+no arguments,
+** ~-~
+(- X Y Z ...) returns X - Y - Z - ..., or 0 if there are no
+arguments.
+** ~/~
+(/ X Y Z ...) returns X / Y / Z / ... or 0 if the list of
+arguments is empty
+** ~/=~
+(/= X Y Z ...) returns true if at least one argument is not
+equal to another argument. Returns false if the list of
+arguments is empty
+** ~<~
+(< X Y Z ...) is true if the list of arguments is an
+strict ascending chain or if it is empty
+** ~<=~
+(< X Y Z ...) is true if the list of arguments is an
+ascending chain or if it is empty
+** ~=~
+(= X Y Z ...) returns true if all arguments are equal. True
+if the list of arguments is empty
+** ~>~
+(< X Y Z ...) is true if the list of arguments is a
+strict descending chain or if it is empty
+** ~>=~
+(< X Y Z ...) is true if the list of arguments is a
+descending chain or if it is empty
+** ~all-static-constant~
+(all-static-constant X Y ..) is true if X,Y,... are static constants.
+A value is a static constant if it was initialized from a constant
+value or computed from static constant values.
+** ~arshift~
+(arshift X N) arithmetically shifts X right by N bits
+** ~channel-close~
+(channel-close DESCR) closes a channel that has the
+specified descriptor DESCR. If no such channel exists,
+then returns -1. Otherwise returns 0. The descriptor of the
+closed channel will be reused by the consequent calls
+to `channel-open'. If the channel had any data associated
+with it and not yet flushed, then the data is discarded.
+** ~channel-flush~
+(channel-flush DESCR) forces data that were written to a
+channel that has the descriptor DESCR to be outputted to the
+associated destination. Returns -1 if no such channel exists or
+if in case of an IO error.
+** ~channel-input~
+(channel-input DESC) reads one byte from a channel that
+has the descriptor DESC. Returns -1 if no such channel
+exists, or if any IO error occurs, if the channel is not
+readable, or if the channel is in the end-of-file condition.
+** ~channel-open~
+(channel-open PTR) creates a new channel that is
+associated with a null-terminated path pointed by PTR.
+Returns a non-negative channel descriptor, if the channel
+subsystem have a mapping from the obtained path to a
+physical file and this file is accessible. Otherwise returns
+a negative value.
+** ~channel-output~
+(channel-output DESCR CHAR ...) outputs one or more
+characters to a channel that has the descriptor
+DESCR. Returns -1 if no such channel exits, if a channel
+is not writable, or if any IO error occurs in an
+associated physical file. Otherwise, returns 0.
+Note: the channel system is buffered, and the actual IO
+operation (as well as errors) could be delayed until
+(channel-flush DESCR) is called.
+** ~concat~
+(concat X Y Z ...) concatenates words X, Y, Z, ... into one
+big word
+** ~dict-add~
+(dict-add DIC KEY DATA) associates DATA with KEY in the
+dictionary DIC. Returns KEY.
+** ~dict-del~
+(dict-del DIC KEY) deletes any association with KEY in the
+dictionary DIC
+** ~dict-get~
+(dict-get DIC KEY) returns data associated with KEY in the
+dictionary DIC, and returns NIL if either DIC doesn't exist on
+no data are associated
+** ~dict-has~
+(dict-has DIC KEY) returns T if the dictionary DIC has the
+key KEY
+** ~exec-addr~
+(exec-addr D) passes the control flow to D and never returns
+** ~exec-symbol~
+(exec-symbol D) passes the control flow to D and never returns
+** ~exit-with~
+(exit-with N) terminates program with the exit codeN
+** ~extract~
+(extract HI LO X) extracts bits from HI to LO (including
+both) from the word X
+** ~get-current-program-counter~
+(get-current-program-counter) returns current program cunnter
+** ~ieee754-abs~
+applies abs to the operand
+** ~ieee754-acos~
+applies acos to the operand
+** ~ieee754-add~
+reduces the list of operands with add
+** ~ieee754-asin~
+applies asin to the operand
+** ~ieee754-atan~
+applies atan to the operand
+** ~ieee754-atan2~
+reduces the list of operands with atan2
+** ~ieee754-ceil~
+applies ceil to the operand
+** ~ieee754-cos~
+applies cos to the operand
+** ~ieee754-cosh~
+applies cosh to the operand
+** ~ieee754-cti~
+truncates to the nearest integer
+** ~ieee754-div~
+reduces the list of operands with div
+** ~ieee754-eq~
+returns true if all operands are ordered with the eq order
+** ~ieee754-exp~
+applies exp to the operand
+** ~ieee754-expm1~
+applies expm1 to the operand
+** ~ieee754-floor~
+applies floor to the operand
+** ~ieee754-ge~
+returns true if all operands are ordered with the ge order
+** ~ieee754-gt~
+returns true if all operands are ordered with the gt order
+** ~ieee754-hypot~
+reduces the list of operands with hypot
+** ~ieee754-le~
+returns true if all operands are ordered with the le order
+** ~ieee754-log~
+applies log to the operand
+** ~ieee754-log10~
+applies log10 to the operand
+** ~ieee754-log1p~
+applies log1p to the operand
+** ~ieee754-lt~
+returns true if all operands are ordered with the lt order
+** ~ieee754-mod~
+reduces the list of operands with mod
+** ~ieee754-mul~
+reduces the list of operands with mul
+** ~ieee754-ne~
+returns true if all operands are ordered with the ne order
+** ~ieee754-neg~
+applies neg to the operand
+** ~ieee754-pos~
+applies pos to the operand
+** ~ieee754-pow~
+reduces the list of operands with pow
+** ~ieee754-sin~
+applies sin to the operand
+** ~ieee754-sinh~
+applies sinh to the operand
+** ~ieee754-sqrt~
+applies sqrt to the operand
+** ~ieee754-sub~
+reduces the list of operands with sub
+** ~ieee754-tan~
+applies tan to the operand
+** ~ieee754-tanh~
+applies tanh to the operand
+** ~incident-location~
+
+** ~incident-report~
+
+** ~is-negative~
+(is-negative X Y ...) returns true if all arguments are negative
+** ~is-positive~
+(is-positive X Y ...) returns true if all arguments are positive
+** ~is-zero~
+(is-zero X Y ...) returns true if all arguments are zeros
+** ~lnot~
+(lnot X) returns the one complement of X
+** ~logand~
+(logand X Y Z ...) returns X & Y & Z & ... or 0 if the list of
+arguments is empty, where & is the bitwise AND
+operation. Returns ~0 if the list of arguments is empty
+** ~logor~
+(logor X Y Z ...) returns X | Y | Z | ... or 0 if the list of
+arguments is empty, where | is the bitwise OR operation
+** ~logxor~
+(logxor X Y Z ...) returns X ^ Y ^ Z ^ ... or 0 if the list of
+arguments is empty, where ^ is the bitwise XOR operation
+** ~lshift~
+(lshift X N) logically shifts X left by N bits
+** ~memory-allocate~
+(memory-allocate P N V?) maps memory region [P,P+N), if V is
+provided, then fills the newly mapped region with the value V
+** ~memory-read~
+(memory-read A) loads one byte from the address A
+** ~memory-write~
+(memory-write A X) stores by X to A
+** ~mod~
+(mod X Y Z ...) returns X % Y % Z % ... or 0 if the list of
+arguments is empty, where % is the modulo operation
+** ~neg~
+(neg X) returns the two complement of X
+** ~not~
+(not X) returns true if X is zero
+** ~points-to-static-data~
+(points-to-static-data PTR LEN) is true iff
+(all-static-constant *PTR .. *(PTR+LEN-1))
+** ~reg-name~
+(reg-name N) returns the name of the register with the index N
+** ~region-contains~
+(region-contains ID X) return if set ID has X.
+Returns the lower bound of the first region that contains
+value X in the set of regions with the given ID. Returns nil
+otherwise.
+Returns nil if a set with the given ID doesn't exist.
+** ~region-create~
+(region-create ID LOWER UPPER) adds [LOWER,UPPER] to the set ID.
+Adds a region denoted with the interval [LOWER,UPPER] to the
+set of regions denoted by the symbol ID. Values LOWER
+and UPPER are included into the interval.
+If the set of regions ID doesn't exist, then it is created.
+** ~region-move~
+(region-move DST SRC P) moves all regions that contain the point
+P from the set SRC to the set DST. Returns nil if SRC didn't
+contain any such region, otherwise returns t.
+** ~rshift~
+(rshift X N) logically shifts X right by N bits
+** ~s/~
+(s/ X Y Z ...) returns X s/ Y s/ Z s/ ... or 0 if the list of
+arguments is empty, where s/ is the signed division operation
+** ~set-symbol-value~
+(set-symbol-value S X) sets the value of the symbol S to X.
+Returns X
+** ~signed-mod~
+(signed-mod X Y Z ...) returns X % Y % Z % ... or 0 if the list of
+arguments is empty, where % is the signed modulo operation
+** ~symbol-concat~
+(symbol-concat X Y Z ...) returns a new symbol that is a
+concatenation of symbols X,Y,Z,...
+** ~taint-get-direct~
+(taint-get-direct K X) returns the direct taint of the kind K
+associatedwith the value X, or nil if there is no such taint
+** ~taint-get-indirect~
+(taint-get-indirect K X) returns the indirect taint of the
+kind K associated with the value X, or nil if there is no such taint
+** ~taint-introduce-directly~
+(taint-introduce-directly K X) introduces a new taint of the
+kind K that is directly associated with the value X
+** ~taint-introduce-indirectly~
+(taint-introduce-indirectly K X N) introduces a new taint of
+the kind K that is indirectly associated with X pointing to an
+object of the size N
+** ~taint-kind~
+(taint-kind t) returns the kind of the taint T.
+** ~taint-policy-select~
+(taint-policy-select K P) selects the taint propagation
+policy P for the taints of the kind K
+** ~taint-policy-set-default~
+(taint-policy-set-default P) makes P the default taint
+propagation policy.
+** ~taint-sanitize-direct~
+(taint-sanitize-direct K X) removes any direct taint of the kind
+K that is directly associated with the value X
+** ~taint-sanitize-indirect~
+(taint-sanitize-indirect K X) removes any direct taint of the kind
+K that is indirectly associated with the value X
+** ~word-width~
+(word-width) returns machine word width in bits
+* Signals
+** ~call~
+(call NAME X Y ...) is emitted when a call to a function with the
+symbolic NAME occurs with the specified list of arguments X,Y,...
+** ~call-return~
+(call-return NAME X Y ... R) is emitted when a call to a function with the
+symbolic NAME returns with the specified list of arguments
+X,Y,... and return value R.
+** ~eval-cond~
+(eval-cond V) is emitted after evaluating a conditional to V
+** ~fini~
+(fini) occurs when the Primus Machine is finished
+** ~init~
+(init) occurs when the Primus Machine is initialized
+** ~interrupt~
+(interrupt N) is emitted when the hardware interrupt N occurs
+** ~jumping~
+(jumping C D) is emitted before jump to D occurs under the
+condition C
+** ~loaded~
+(loaded A X) is emitted when X is loaded from A
+** ~loading~
+(loading A) is emitted before load from A occurs
+** ~machine-kill~
+(machine-kill) occurs when Machine is killed and could be
+used for machine cleanup/teardown and analysis summaries.
+The machine is in the resticted mode in the body of the
+methods.
+** ~pc-changed~
+(pc-change PC) is emitted when PC is updated
+** ~read~
+(read V X) is emitted when X is read from V
+** ~stored~
+(stored A X) is emitted when X is stored to A
+** ~storing~
+(storing A) is emitted before store to A occurs
+** ~system-stop~
+(system-stop NAME) occurs when the system with the given
+name finished its execution. The machine is in the
+restricted mode in the body of the methods
+** ~taint-finalize~
+(taint-finalize T L) is emitted when the taint T is finilized
+while still live if L is true or dead if T is false.
+** ~written~
+(written V X) is emitted when X is written to V
+
