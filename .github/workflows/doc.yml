@@ -27,6 +27,7 @@ jobs:
           docker cp    mycontainer:/home/opam/bap.master/doc/man1 ready/
           docker cp    mycontainer:/home/opam/bap.master/doc/man3 ready/
           docker cp -L mycontainer:/home/opam/bap.master/doc/odoc ready/
+          docker cp  mycontainer:/home/opam/bap.master/bap_commit .
        - name: lookup
          run:  ls -l ready
 #       - name: push
