@@ -24,9 +24,9 @@ jobs:
           mkdir ready
           docker run -v `pwd`:/drive --name mycontainer docs
           docker ps -a
-          docker cp    mycontainer:/home/opam/bap.upstream/doc/man1 ready/
-          docker cp    mycontainer:/home/opam/bap.upstream/doc/man3 ready/
-          docker cp -L mycontainer:/home/opam/bap.upstream/doc/odoc ready/
+          docker cp    mycontainer:/home/opam/bap.master/doc/man1 ready/
+          docker cp    mycontainer:/home/opam/bap.master/doc/man3 ready/
+          docker cp -L mycontainer:/home/opam/bap.master/doc/odoc ready/
        - name: lookup
          run:  ls -l ready
 #       - name: push

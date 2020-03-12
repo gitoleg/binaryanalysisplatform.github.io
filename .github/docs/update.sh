@@ -1,11 +1,12 @@
 #!/usr/bin/env sh
 
+io_commit=/home/opam/commit
 
 eval $(opam env)
 ls -l
-if [ -f /home/opam/commit ]; then
-    io_commit=`cat $DRIVE/commit`
-    bap="bap.upstream"
+
+if [ -f $io_commit ]; then
+    bap="bap.master"
     # TODO
     # git clone https://github.com/BinaryAnalysisPlatform/bap --single-branch --branch=master --depth=1 $bap
     git clone https://github.com/gitoleg/bap --single-branch --branch=new-documentation --depth=1 $bap
@@ -14,6 +15,7 @@ if [ -f /home/opam/commit ]; then
 
     if [ "$io_commit" != "bap_commit" ]; then
         make doc
+        ls
         echo $bap_commit > bap_commit
         `pwd`
         # cp -r  doc/man1/ $DRIVE/ready
@@ -28,4 +30,7 @@ if [ -f /home/opam/commit ]; then
     else
         echo "Nothing we need to do, documentation is up-to-date"
     fi
+else
+    echo "Can't find a file with commit"
+    exit 1
 fi
