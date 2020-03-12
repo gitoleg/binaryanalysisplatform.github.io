@@ -1,10 +1,9 @@
 #!/usr/bin/env sh
 
-DRIVE=/drive
 
 eval $(opam env)
-
-if [ -f $DRIVE/commit ]; then
+ls -l
+if [ -f /home/opam/commit ]; then
     io_commit=`cat $DRIVE/commit`
     bap="bap.upstream"
     # TODO
