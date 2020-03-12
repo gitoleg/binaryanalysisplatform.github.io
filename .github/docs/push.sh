@@ -19,7 +19,8 @@ if [ -f bap_commit ]; then
     git config --global user.email "action-noreply@github.com"
 
     git add bap/api > /dev/null
-    git commit -m "cat bap_commit"
+    cat bap_commit
+    git commit -m `cat bap_commit`
 #    git push $remote_repo master # TODO!
     git push $remote_repo add-actions
 fi
