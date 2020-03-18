@@ -24,12 +24,15 @@ ls doc
 
 blog=blog
 
-git clone https://github.com/BinaryAnalysisPlatform/binaryanalysisplatform.github.io --single-branch --branch=master --depth=1 $blog
+#TODO
+git clone https://github.com/gitoleg/binaryanalysisplatform.github.io --no-checkout --single-branch --branch=master --depth=1 $blog
 
-sync ready/man1/ $blog/bap/api/man1/
-sync ready/man3/ $blog/bap/api/man3/
-sync ready/lisp/ $blog/bap/api/lisp/
-sync ready/odoc/ $blog/bap/api/odoc/
+mkdir -p $blog/bap/api
+
+mv doc/man1 $blog/bap/api/
+mv doc/man3 $blog/bap/api/
+mv doc/lisp $blog/bap/api/
+mv doc/odoc $blog/bap/api/
 
 cd $blog
 

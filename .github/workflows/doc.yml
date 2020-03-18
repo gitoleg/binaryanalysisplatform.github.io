@@ -15,8 +15,7 @@ jobs:
      name: update-docs
      runs-on: ubuntu-latest
      steps:
-       - uses: actions/checkout@v2
        - name: build
-         uses: ./.github/docs
+         uses: gitoleg/my-actions/documentation@master
          with:
            token: ${{ secrets.GITHUB_TOKEN }}
