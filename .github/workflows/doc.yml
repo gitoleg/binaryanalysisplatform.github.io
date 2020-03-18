@@ -17,6 +17,6 @@ jobs:
      steps:
        - uses: actions/checkout@v2
        - name: build
-         uses: ./.github/docs/build
+         uses: ./.github/docs
          with:
            token: ${{ secrets.GITHUB_TOKEN }}
