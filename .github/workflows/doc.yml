@@ -16,6 +16,6 @@ jobs:
      runs-on: ubuntu-latest
      steps:
        - name: build
-         uses: .github/action/build.yml
+         uses: .github/action/build
          with:
            token: ${{ secrets.GITHUB_TOKEN }}
