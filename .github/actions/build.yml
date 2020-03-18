@@ -1,0 +1,13 @@
+
+name: 'Hello World'
+description: 'Greet someone and record the time'
+inputs:
+  token:
+    description: 'my token'
+    required: true
+    default: ''
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.token }}
