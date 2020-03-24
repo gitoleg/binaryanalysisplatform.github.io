@@ -19,7 +19,3 @@ jobs:
          uses: gitoleg/my-actions/documentation@master
          with:
            token: ${{ secrets.GITHUB_TOKEN }}
-       - name: check
-         run: |
-           ls -la
-           ls -la lisp/
