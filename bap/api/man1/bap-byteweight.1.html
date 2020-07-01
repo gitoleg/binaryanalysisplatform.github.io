@@ -1,9 +1,9 @@
 Content-type: text/html; charset=UTF-8
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of bap-byteweight</TITLE>
+<HTML><HEAD><TITLE>Man page of BAP-BYTEWEIGHT</TITLE>
 </HEAD><BODY>
-<H1>bap-byteweight</H1>
+<H1>BAP-BYTEWEIGHT</H1>
 Section: Bap-byteweight Manual (1)<BR>Updated: <BR><A HREF="#index">Index</A>
 <A HREF="../odoc/index.html">Return to Main Contents</A><HR>
 
@@ -136,6 +136,8 @@ prints more information about the <B>frontc-parser</B> plugin
 prints more information about the <B>glibc-runtime</B> plugin
 <DT><B>--ida-help</B>[=<I>VAL</I>] (default=auto)<DD>
 prints more information about the <B>ida</B> plugin
+<DT><B>--legacy-llvm-help</B>[=<I>VAL</I>] (default=auto)<DD>
+prints more information about the <B>legacy-llvm</B> plugin
 <DT><B>--llvm-base</B>=<I>VAL</I><DD>
 Replace image base address&#46; If not set, a reasonable default corresponded to a file type will be used&#46; For example, for any executable file a default image base is equal to lowest image virtual address&#46; For relocatable files a default image base is equal to 0xC0000000&#46;
 <DT><B>--llvm-help</B>[=<I>VAL</I>] (default=auto)<DD>
@@ -188,6 +190,8 @@ Disable the frontc-parser plugin
 Disable the glibc-runtime plugin
 <DT><B>--no-ida</B><DD>
 Disable the ida plugin
+<DT><B>--no-legacy-llvm</B><DD>
+Disable the legacy-llvm plugin
 <DT><B>--no-llvm</B><DD>
 Disable the llvm plugin
 <DT><B>--no-map-terms</B><DD>
@@ -202,8 +206,6 @@ Disable the objdump plugin
 Disable the optimization plugin
 <DT><B>--no-phoenix</B><DD>
 Disable the phoenix plugin
-<DT><B>--no-piqi-printers</B><DD>
-Disable the piqi-printers plugin
 <DT><B>--no-powerpc</B><DD>
 Disable the powerpc plugin
 <DT><B>--no-primus-dictionary</B><DD>
@@ -250,6 +252,8 @@ Disable the primus-x86 plugin
 Disable the print plugin
 <DT><B>--no-propagate-taint</B><DD>
 Disable the propagate-taint plugin
+<DT><B>--no-radare2</B><DD>
+Disable the radare2 plugin
 <DT><B>--no-raw</B><DD>
 Disable the raw plugin
 <DT><B>--no-read-symbols</B><DD>
@@ -284,8 +288,6 @@ prints more information about the <B>objdump</B> plugin
 prints more information about the <B>optimization</B> plugin
 <DT><B>--phoenix-help</B>[=<I>VAL</I>] (default=auto)<DD>
 prints more information about the <B>phoenix</B> plugin
-<DT><B>--piqi-printers-help</B>[=<I>VAL</I>] (default=auto)<DD>
-prints more information about the <B>piqi-printers</B> plugin
 <DT><B>--powerpc-help</B>[=<I>VAL</I>] (default=auto)<DD>
 prints more information about the <B>powerpc</B> plugin
 <DT><B>--primus-dictionary-help</B>[=<I>VAL</I>] (default=auto)<DD>
@@ -336,6 +338,8 @@ prints more information about the <B>primus-x86</B> plugin
 prints more information about the <B>print</B> plugin
 <DT><B>--propagate-taint-help</B>[=<I>VAL</I>] (default=auto)<DD>
 prints more information about the <B>propagate-taint</B> plugin
+<DT><B>--radare2-help</B>[=<I>VAL</I>] (default=auto)<DD>
+prints more information about the <B>radare2</B> plugin
 <DT><B>--raw-help</B>[=<I>VAL</I>] (default=auto)<DD>
 prints more information about the <B>raw</B> plugin
 <DT><B>--read-symbols-help</B>[=<I>VAL</I>] (default=auto)<DD>
@@ -393,6 +397,6 @@ A folder for log files&#46;
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 17:43:09 GMT, May 28, 2020
+Time: 05:50:56 GMT, July 01, 2020
 </BODY>
 </HTML>
