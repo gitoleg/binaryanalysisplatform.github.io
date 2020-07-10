@@ -29,8 +29,7 @@ jobs:
           path: bap.master
 
       # - name: Pin BAP
-      #   run: |
-      #     ls -l
+      #   run:
       #     opam pin add bap bap.master --no-action
 
       # - name: Install system dependencies
@@ -60,7 +59,7 @@ jobs:
         run: |
           mkdir -p bap.master/doc/man1
           echo "hello, world" >> bap.master/doc/man1/test-file
-          echo '::set-env name=TEST_MESSAGE::$(git -C bap.master rev-parse --short HEAD)"'
+          echo ::set-env name=TEST_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
 
       - name: update
         run: |
