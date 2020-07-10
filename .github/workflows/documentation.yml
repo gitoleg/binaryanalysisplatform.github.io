@@ -60,8 +60,7 @@ jobs:
         run: |
           mkdir -p bap.master/doc/man1
           echo "hello, world" >> bap.master/doc/man1/test-file
-          LAST_COMMIT=`git -C bap.master rev-parse --short HEAD`
-          echo '::set-env name=TEST_MESSAGE::"last commit $LAST_COMMIT"'
+          echo '::set-env name=TEST_MESSAGE::$(git -C bap.master rev-parse --short HEAD)"'
 
       - name: update
         run: |
