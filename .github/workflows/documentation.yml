@@ -59,7 +59,7 @@ jobs:
       - name: fake build
         run: |
           mkdir -p bap.master/doc/man1
-          cat "hello, world" >> bap.master/doc/man1/test-file
+          echo "hello, world" >> bap.master/doc/man1/test-file
           LAST_COMMIT=`git -C bap.master rev-parse --short HEAD`
           echo '::set-env name=TEST_MESSAGE::"last commit $LAST_COMMIT"'
 
