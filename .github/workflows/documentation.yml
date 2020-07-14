@@ -25,8 +25,8 @@ jobs:
       - name: Checkout bap
         uses: actions/checkout@v2
         with:
-          repository: gitoleg/bap
-          ref: builds-primus-api-doc
+          repository: gitoleg/bap  #REPLACE it
+          ref: builds-primus-api-doc #REMOVE it
           path: bap.master
 
       - name: Pin BAP
@@ -38,8 +38,8 @@ jobs:
 
       - name: Install opam dependencies
         run: |
-            opam install bap --deps-only
-            opam install omake
+          opam install bap --deps-only
+          opam install omake
 
       - name: Install Bap
         run: |
@@ -57,6 +57,11 @@ jobs:
           opam exec -- make -C bap.master doc
           echo ::set-env name=BLOG_COMMIT_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
 
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: bapdoc-log
+          path: /home/runner/work/binaryanalysisplatform.github.io/bap.master/doc/bapdoc.log
 
       - name: update
         run: |
