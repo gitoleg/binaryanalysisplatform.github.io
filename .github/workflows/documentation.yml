@@ -14,60 +14,56 @@ jobs:
         with:                       # to false in most cases for the deployment to work correctly.
           persist-credentials: false
 
-      # - name: Install OCaml
-      #   uses: avsm/setup-ocaml@v1
-      #   with:
-      #     ocaml-version: 4.09.1
+      - name: Install OCaml
+        uses: avsm/setup-ocaml@v1
+        with:
+          ocaml-version: 4.09.1
 
-      # - name: Pin OASIS
-      #   run: opam pin add oasis https://github.com/BinaryAnalysisPlatform/oasis.git
+      - name: Pin OASIS
+        run: opam pin add oasis https://github.com/BinaryAnalysisPlatform/oasis.git
 
       - name: Checkout bap
         uses: actions/checkout@v2
         with:
-          repository: BinaryAnalysisPlatform/bap
+          repository: gitoleg/bap
+          ref: builds-primus-api-doc
           path: bap.master
 
-      # - name: Pin BAP
-      #   run:
-      #     opam pin add bap bap.master --no-action
+      - name: Pin BAP
+        run:
+          opam pin add bap bap.master --no-action
 
-      # - name: Install system dependencies
-      #   run: opam depext -u bap
+      - name: Install system dependencies
+        run: opam depext -u bap
 
-      # - name: Install opam dependencies
-      #   run: |
-      #       opam install bap --deps-only
-      #       opam install omake
-
-      # - name: Install Bap
-      #   run: |
-      #     cd bap.master
-      #     opam exec -- ./configure-omake
-      #     opam exec -- make
-      #     opam exec -- make reinstall
-      #     cd ../
-
-      # - name: Build Documentation
-      #   run: |
-      #     sudo apt-get install emacs-nox man2html --yes
-      #     opam install odig --yes
-      #     opam exec -- make -C bap.master clean
-      #     opam exec -- make -C bap.master doc
-
-      - name: fake build
+      - name: Install opam dependencies
         run: |
-          mkdir -p bap.master/doc/man1
-          echo "hello, world" >> bap.master/doc/man1/test-file
-          #echo ::set-env name=TEST_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
-          echo ::set-env name=TEST_MESSAGE::$(echo -n "hello world")
+            opam install bap --deps-only
+            opam install omake
+
+      - name: Install Bap
+        run: |
+          cd bap.master
+          opam exec -- ./configure-omake
+          opam exec -- make
+          opam exec -- make reinstall
+
+      - name: Build Documentation
+        run: |
+          ls -l
+          sudo apt-get install emacs-nox man2html --yes
+          opam install odig --yes
+          opam exec -- make -C bap.master clean
+          opam exec -- make -C bap.master doc
+          echo ::set-env name=BLOG_COMMIT_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
+
 
       - name: update
         run: |
           cp -r  bap.master/doc/man1 bap/api/
-#          cp -r  bap.master/doc/man3 bap/api/
-#          cp -r  bap.master/doc/lisp bap/api/
-#          cp -rL bap.master/doc/odoc bap/api/
+          cp -r  bap.master/doc/man3 bap/api/
+          cp -r  bap.master/doc/lisp bap/api/
+          cp -rL bap.master/doc/odoc bap/api/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -75,4 +71,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master
           FOLDER: bap
-          COMMIT_MESSAGE: ${{ env.TEST_MESSAGE }}
+          COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
