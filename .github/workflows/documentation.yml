@@ -59,7 +59,8 @@ jobs:
         run: |
           mkdir -p bap.master/doc/man1
           echo "hello, world" >> bap.master/doc/man1/test-file
-          echo ::set-env name=TEST_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
+          #echo ::set-env name=TEST_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
+          echo ::set-env name=TEST_MESSAGE::$(echo -n "hello world")
 
       - name: update
         run: |
