@@ -61,7 +61,7 @@ jobs:
         if: ${{ always() }}
         with:
           name: bapdoc-log
-          path: /home/runner/work/binaryanalysisplatform.github.io/binaryanalysisplatform.github.io/bap.master/doc/bapdoc.log
+          path: bap.master/doc/bapdoc.log
 
       - name: update
         run: |
