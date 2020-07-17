@@ -66,10 +66,10 @@ jobs:
       - name: update
         run: |
           ls -l
-          cp -r  bap.master/doc/man1 bap/api/
-          cp -r  bap.master/doc/man3 bap/api/
-          cp -r  bap.master/doc/lisp bap/api/
-          cp -r  bap.master/doc/primus bap/api/
+          mv bap.master/doc/man1 bap/api/
+          mv bap.master/doc/man3 bap/api/
+          mv bap.master/doc/lisp bap/api/
+          mv bap.master/doc/primus bap/api/
           cp -rL bap.master/doc/odoc bap/api/
 
       - name: Deploy 🚀
@@ -77,5 +77,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master
-          FOLDER: .
+          CLEAN: true
+          FOLDER: bap
           COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
