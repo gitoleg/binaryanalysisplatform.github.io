@@ -71,6 +71,7 @@ jobs:
           cp -r  bap.master/doc/lisp bap/api/
           cp -r  bap.master/doc/primus bap/api/
           cp -rL bap.master/doc/odoc bap/api/
+          ls -l bap/api
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
