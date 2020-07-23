@@ -63,21 +63,19 @@ jobs:
           name: bapdoc-log
           path: bap.master/doc/bapdoc.log
 
-      - name: update
-        run: |
-          ls -l  bap/api/primus
-          ls -l  bap.master/doc/primus
-          cp -r  bap.master/doc/man1 bap/api/
-          cp -r  bap.master/doc/man3 bap/api/
-          cp -r  bap.master/doc/lisp bap/api/
-          cp -r  bap.master/doc/primus bap/api/
-          cp -rL bap.master/doc/odoc bap/api/
-          ls -l  bap/api/primus
+      # - name: update
+      #   run: |
+      #     cp -r  bap.master/doc/man1 bap/api/
+      #     cp -r  bap.master/doc/man3 bap/api/
+      #     cp -r  bap.master/doc/lisp bap/api/
+      #     cp -r  bap.master/doc/primus bap/api/
+      #     cp -rL bap.master/doc/odoc bap/api/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master
-          FOLDER: .
+          FOLDER: bap.master/doc/
+          TARGET_FOLDER: bap/api
           COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
