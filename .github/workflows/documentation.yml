@@ -65,10 +65,11 @@ jobs:
 
       - name: update
         run: |
-          cp -r  bap.master/doc/man1 bap/api/
-          cp -r  bap.master/doc/man3 bap/api/
-          cp -r  bap.master/doc/lisp bap/api/
-          cp -r  bap.master/doc/primus bap/api/
+          mkdir ready
+          mv  bap.master/doc/man1 ready/
+          mv  bap.master/doc/man3 ready/
+          mv  bap.master/doc/lisp ready/
+          mv  bap.master/doc/primus ready
           cp -rL bap.master/doc/odoc bap/api/
 
       - name: Deploy 🚀
@@ -76,6 +77,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master
-          FOLDER: bap/api
+          FOLDER: ready
           TARGET_FOLDER: bap/api
           COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
