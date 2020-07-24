@@ -69,8 +69,8 @@ jobs:
           mv  bap.master/doc/man1 ready/
           mv  bap.master/doc/man3 ready/
           mv  bap.master/doc/lisp ready/
-          mv  bap.master/doc/primus ready
-          cp -rL bap.master/doc/odoc bap/api/
+          mv  bap.master/doc/primus ready/
+          cp -rL bap.master/doc/odoc ready/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
