@@ -66,17 +66,17 @@ jobs:
       - name: update
         run: |
           mkdir ready
-          mv  bap.master/doc/man1 ready/
-          mv  bap.master/doc/man3 ready/
-          mv  bap.master/doc/lisp ready/
-          mv  bap.master/doc/primus ready/
-          cp -rL bap.master/doc/odoc ready/
+          mv  bap.master/doc/man1 bap/api/
+          mv  bap.master/doc/man3 bap/api/
+          mv  bap.master/doc/lisp bap/api/
+          mv  bap.master/doc/primus bap/api/
+          cp -rL bap.master/doc/odoc bap/api/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master
-          FOLDER: ready
+          FOLDER: bap/api
           TARGET_FOLDER: bap/api
           COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
