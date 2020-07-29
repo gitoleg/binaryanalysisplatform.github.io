@@ -77,4 +77,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master
           FOLDER: bap/api
+          TARGET_FOLDER: bap/api
           COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
