@@ -67,7 +67,8 @@ jobs:
         run: |
           rm -rf bap.master/doc/odoc
           rm -rf bap.master/doc/Makefile
-          cp -rL `opam exec -- $(odig cache path)/html` odoc
+          eval $(opam env)
+          cp -rL $(odig cache path)/html odoc
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
