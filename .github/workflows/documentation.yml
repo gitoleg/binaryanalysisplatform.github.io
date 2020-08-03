@@ -65,23 +65,18 @@ jobs:
 
       - name: update
         run: |
-          echo "old primus api"
-          ls -l bap/api/primus/index.html
-          echo "new primus api"
-          ls -l bap.master/doc/primus/index.html
-          cp -r  bap.master/doc/man1 bap/api/
-          cp -r  bap.master/doc/man3 bap/api/
-          cp -r  bap.master/doc/lisp bap/api/
-          cp -r  bap.master/doc/primus bap/api/
-          cp -rL bap.master/doc/odoc bap/api/
-          echo "installed primus api"
-          ls -l bap/api/primus/index.html
+           mkdir ready
+           mv  bap.master/doc/man1 ready/
+           mv  bap.master/doc/man3 ready/
+           mv  bap.master/doc/lisp ready/
+           mv  bap.master/doc/primus ready/
+           cp -rL bap.master/doc/odoc ready/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: master
-          FOLDER: bap/api
+          FOLDER: ready
           TARGET_FOLDER: bap/api
           COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
