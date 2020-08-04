@@ -14,13 +14,16 @@ jobs:
         with:                       # to false in most cases for the deployment to work correctly.
           persist-credentials: false
 
-      - name: Install OCaml
-        uses: avsm/setup-ocaml@v1
-        with:
-          ocaml-version: 4.09.1
+      # - name: Install OCaml
+      #   uses: avsm/setup-ocaml@v1
+      #   with:
+      #     ocaml-version: 4.09.1
 
-      - name: Pin OASIS
-        run: opam pin add oasis https://github.com/BinaryAnalysisPlatform/oasis.git
+      # - name: Pin OASIS
+      #   run: opam pin add oasis https://github.com/BinaryAnalysisPlatform/oasis.git
+
+      - name: Check 0
+        run: ls -l
 
       - name: Checkout bap
         uses: actions/checkout@v2
@@ -57,7 +60,7 @@ jobs:
       #   run: |
       #     ls -l
       #     sudo apt-get install emacs-nox man2html --yes
-      #     opam install odig --yes
+      #     opam install odig
       #     opam exec -- make -C bap.master clean
       #     opam exec -- make -C bap.master doc
       #     echo ::set-env name=BLOG_COMMIT_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
