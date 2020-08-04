@@ -14,77 +14,69 @@ jobs:
         with:                       # to false in most cases for the deployment to work correctly.
           persist-credentials: false
 
-      # - name: Install OCaml
-      #   uses: avsm/setup-ocaml@v1
-      #   with:
-      #     ocaml-version: 4.09.1
+      - name: Install OCaml
+        uses: avsm/setup-ocaml@v1
+        with:
+          ocaml-version: 4.09.1
 
-      # - name: Pin OASIS
-      #   run: opam pin add oasis https://github.com/BinaryAnalysisPlatform/oasis.git
-
-      - name: Check 0
-        run: ls -l
+      - name: Pin OASIS
+        run: opam pin add oasis https://github.com/BinaryAnalysisPlatform/oasis.git
 
       - name: Checkout bap
         uses: actions/checkout@v2
         with:
           repository: gitoleg/bap  #REPLACE it
           ref: builds-primus-api-doc #REMOVE it
+          path: bap.master
 
-      - name: Check 1
-        run: ls -l
+      - name: Pin BAP
+        run:
+          opam pin add bap bap.master --no-action
 
-      - name: Check 2
-        run: ls -l bap/
+      - name: Install system dependencies
+        run: opam depext -u bap
 
-      # - name: Pin BAP
-      #   run:
-      #     opam pin add bap bap.master --no-action
+      - name: Install opam dependencies
+        run: |
+          opam install bap --deps-only
+          opam install omake
 
-      # - name: Install system dependencies
-      #   run: opam depext -u bap
+      - name: Install Bap
+        run: |
+          cd bap.master
+          opam exec -- ./configure-omake
+          opam exec -- make
+          opam exec -- make reinstall
 
-      # - name: Install opam dependencies
-      #   run: |
-      #     opam install bap --deps-only
-      #     opam install omake
+      - name: Build Documentation
+        run: |
+          ls -l
+          sudo apt-get install emacs-nox man2html --yes
+          opam install odig
+          opam exec -- make -C bap.master clean
+          opam exec -- make -C bap.master doc
+          echo ::set-env name=BLOG_COMMIT_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
 
-      # - name: Install Bap
-      #   run: |
-      #     cd bap.master
-      #     opam exec -- ./configure-omake
-      #     opam exec -- make
-      #     opam exec -- make reinstall
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: bapdoc-log
+          path: bap.master/doc/bapdoc.log
 
-      # - name: Build Documentation
-      #   run: |
-      #     ls -l
-      #     sudo apt-get install emacs-nox man2html --yes
-      #     opam install odig
-      #     opam exec -- make -C bap.master clean
-      #     opam exec -- make -C bap.master doc
-      #     echo ::set-env name=BLOG_COMMIT_MESSAGE::$(git -C bap.master rev-parse --short HEAD)
+      - name: update
+        run: |
+           mkdir ready
+           mv  bap.master/doc/man1 ready/
+           mv  bap.master/doc/man3 ready/
+           mv  bap.master/doc/lisp ready/
+           mv  bap.master/doc/primus ready/
+           cp -rL bap.master/doc/odoc ready/
 
-      # - uses: actions/upload-artifact@v2
-      #   if: ${{ always() }}
-      #   with:
-      #     name: bapdoc-log
-      #     path: bap.master/doc/bapdoc.log
-
-      # - name: update
-      #   run: |
-      #      mkdir ready
-      #      mv  bap.master/doc/man1 ready/
-      #      mv  bap.master/doc/man3 ready/
-      #      mv  bap.master/doc/lisp ready/
-      #      mv  bap.master/doc/primus ready/
-      #      cp -rL bap.master/doc/odoc ready/
-
-      # - name: Deploy 🚀
-      #   uses: JamesIves/github-pages-deploy-action@releases/v3
-      #   with:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     BRANCH: master
-      #     FOLDER: ready
-      #     TARGET_FOLDER: bap/api
-      #     COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: master
+          FOLDER: ready
+          TARGET_FOLDER: bap/api
+          COMMIT_MESSAGE: ${{ env.BLOG_COMMIT_MESSAGE }}
