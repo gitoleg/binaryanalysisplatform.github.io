@@ -1,9 +1,9 @@
 Content-type: text/html; charset=UTF-8
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of bap-disassemble</TITLE>
+<HTML><HEAD><TITLE>Man page of BAP-DISASSEMBLE</TITLE>
 </HEAD><BODY>
-<H1>bap-disassemble</H1>
+<H1>BAP-DISASSEMBLE</H1>
 Section: Bap Manual (1)<BR>Updated: <BR><A HREF="#index">Index</A>
 <A HREF="../odoc/index.html">Return to Main Contents</A><HR>
 
@@ -154,6 +154,8 @@ Show this help in format <I>FMT</I>&#46; The value <I>FMT</I> must be one of `au
 Enables the pass ida in the old style (DEPRECATED)
 <DT><B>-L</B> <I>VAL</I>, <B>--plugin-path</B>=<I>VAL</I>, <B>--load-path</B>=<I>VAL</I><DD>
 Adds folder to the list of plugins search paths
+<DT><B>--legacy-llvm</B><DD>
+Enables the pass legacy-llvm in the old style (DEPRECATED)
 <DT><B>--llvm</B><DD>
 Enables the pass llvm in the old style (DEPRECATED)
 <DT><B>--loader</B>=<I>VAL</I> (absent=llvm)<DD>
@@ -174,8 +176,6 @@ Enables the pass optimization in the old style (DEPRECATED)
 Run the selected passes (in the specified order)
 <DT><B>--phoenix</B><DD>
 Enables the pass phoenix in the old style (DEPRECATED)
-<DT><B>--piqi-printers</B><DD>
-Enables the pass piqi-printers in the old style (DEPRECATED)
 <DT><B>--powerpc</B><DD>
 Enables the pass powerpc in the old style (DEPRECATED)
 <DT><B>--primus-dictionary</B><DD>
@@ -222,6 +222,8 @@ Enables the pass primus-x86 in the old style (DEPRECATED)
 Enables the pass print in the old style (DEPRECATED)
 <DT><B>--propagate-taint</B><DD>
 Enables the pass propagate-taint in the old style (DEPRECATED)
+<DT><B>--radare2</B><DD>
+Enables the pass radare2 in the old style (DEPRECATED)
 <DT><B>--raw</B><DD>
 Enables the pass raw in the old style (DEPRECATED)
 <DT><B>--read-symbols</B><DD>
@@ -323,7 +325,7 @@ prints more information about the <B>byteweight</B> plugin
 The maximum length of a word, that could identify a function start&#46; Any signatures that are greater than that length, will not be considered, affect prior probabilities, etc&#46;
 <DT><B>--byteweight-min-length</B>=<I>VAL</I> (absent=8)<DD>
 The minimum length of a word, that could identify a function start&#46; Any signatures that are below that length, will not be considered, affect prior probabilities, etc&#46;
-<DT><B>--byteweight-sigs</B>=<I>VAL</I> (absent=/home/oleg/&#46;opam/4&#46;07&#46;1/share/bap/sigs&#46;zip)<DD>
+<DT><B>--byteweight-sigs</B>=<I>VAL</I> (absent=/home/runner/&#46;opam/4&#46;09&#46;1/share/bap/sigs&#46;zip)<DD>
 Path to the signature file
 <DT><B>--byteweight-threshold</B>=<I>VAL</I> (absent=10&#46;)<DD>
 If greater than 1&#46;0 then it is the Bayes factor, otherwise it is a probability&#46;
@@ -371,8 +373,10 @@ Use headless curses based IDA&#46;
 prints more information about the <B>ida</B> plugin
 <DT><B>--ida-mode</B>=<I>VAL</I> (absent=auto)<DD>
 Specify IDA mode&#46;
-<DT><B>--ida-path</B>=<I>VAL</I> (absent=/home/oleg/ida-7&#46;1)<DD>
+<DT><B>--ida-path</B>=<I>VAL</I><DD>
 Path to IDA directory&#46;
+<DT><B>--legacy-llvm-help</B>[=<I>VAL</I>] (default=auto)<DD>
+prints more information about the <B>legacy-llvm</B> plugin
 <DT><B>--llvm-base</B>=<I>VAL</I><DD>
 Replace image base address&#46; If not set, a reasonable default corresponded to a file type will be used&#46; For example, for any executable file a default image base is equal to lowest image virtual address&#46; For relocatable files a default image base is equal to 0xC0000000&#46;
 <DT><B>--llvm-help</B>[=<I>VAL</I>] (default=auto)<DD>
@@ -429,6 +433,8 @@ Disable the frontc-parser plugin
 Disable the glibc-runtime plugin
 <DT><B>--no-ida</B><DD>
 Disable the ida plugin
+<DT><B>--no-legacy-llvm</B><DD>
+Disable the legacy-llvm plugin
 <DT><B>--no-llvm</B><DD>
 Disable the llvm plugin
 <DT><B>--no-map-terms</B><DD>
@@ -443,8 +449,6 @@ Disable the objdump plugin
 Disable the optimization plugin
 <DT><B>--no-phoenix</B><DD>
 Disable the phoenix plugin
-<DT><B>--no-piqi-printers</B><DD>
-Disable the piqi-printers plugin
 <DT><B>--no-powerpc</B><DD>
 Disable the powerpc plugin
 <DT><B>--no-primus-dictionary</B><DD>
@@ -491,6 +495,8 @@ Disable the primus-x86 plugin
 Disable the print plugin
 <DT><B>--no-propagate-taint</B><DD>
 Disable the propagate-taint plugin
+<DT><B>--no-radare2</B><DD>
+Disable the radare2 plugin
 <DT><B>--no-raw</B><DD>
 Disable the raw plugin
 <DT><B>--no-read-symbols</B><DD>
@@ -549,8 +555,6 @@ Disable all kinds of optimizations
 Do not resolve addresses to symbolic names
 <DT><B>--phoenix-output-folder</B>=<I>VAL</I> (absent=phoenix)<DD>
 Output data into the specified folder
-<DT><B>--piqi-printers-help</B>[=<I>VAL</I>] (default=auto)<DD>
-prints more information about the <B>piqi-printers</B> plugin
 <DT><B>--powerpc-help</B>[=<I>VAL</I>] (default=auto)<DD>
 prints more information about the <B>powerpc</B> plugin
 <DT><B>--primus-dictionary-help</B>[=<I>VAL</I>] (default=auto)<DD>
@@ -693,6 +697,8 @@ print coverage [debug]
 Initialize random number generator with the given seed
 <DT><B>--propagate-taint-reg-value</B>=<I>VAL</I> (absent=random)<DD>
 Input generation policy&#46; If set to a fixed value, e&#46;g&#46; `0&#39;, then all undefined registers will be concretized to this value&#46; If set to an interval, e&#46;g&#46;, `(0 5)&#39;, then values will be randomly picked from this interval (boundaries including)&#46; If set to `random&#39;, then values will be picked randomly from a domain, defined by a type of value&#46;
+<DT><B>--radare2-help</B>[=<I>VAL</I>] (default=auto)<DD>
+prints more information about the <B>radare2</B> plugin
 <DT><B>--raw-arch</B>=<I>VAL</I> (absent=x86_64)<DD>
 Specifies the ISA of raw bytes
 <DT><B>--raw-base</B>=<I>VAL</I> (absent=0x0)<DD>
@@ -817,6 +823,6 @@ A folder for log files&#46;
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 17:43:09 GMT, May 28, 2020
+Time: 18:38:33 GMT, August 04, 2020
 </BODY>
 </HTML>
